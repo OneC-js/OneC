@@ -5,6 +5,7 @@
   padding: 0.5em 0.9em;
   border-radius: 0.25em;
   font-size: 12pt;
+  font-weight: 600;
 }
 
 .primary:hover {
@@ -18,10 +19,28 @@
   padding: 0.5em 0.9em;
   border-radius: 0.25em;
   font-size: 12pt;
+  font-weight: 600;
   border: 1px solid #007fff;
 }
 
 .secondary:hover {
   color: white;
   background: #007fff;
+}
+
+.accent {
+  border: none;
+  color: black;
+  background: white;
+  padding: 0.5em 0.9em;
+  border-radius: 0.25em;
+  font-size: 12pt;
+}
+
+.accent:hover {
+  background: #0080ff27;
+}
+
+button {
+  font-family: "Helvetica";
 }

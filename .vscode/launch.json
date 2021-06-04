@@ -14,5 +14,12 @@
                 "--incognito"
             ],
         },
+        {
+            "type": "firefox",
+            "request": "launch",
+            "name": "Firefox",
+            "url": "http://localhost:9000",
+            "webRoot": "${workspaceFolder}"
+        }
     ]
 }

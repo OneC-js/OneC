@@ -8,13 +8,31 @@ export class RootComponent extends OneComponent {
         display: "grid",
         height: "75%",
         "align-items": "center",
-        "justify-content": "center",
+        "justify-items": "center",
       },
-      img: {
-        _src: "assets/onec.svg",
-        _width: "400",
-        _height: "400",
-      },
+      _cn: [
+        {
+          img: {
+            _src: "assets/onec.svg",
+            _width: "400",
+            _height: "400",
+          },
+        },
+        {
+          div: {
+            _text: "The object-based framework",
+            _style: {
+              "font-size": "20pt",
+            },
+          },
+        },
+        {
+          "c-button": {
+            _txt: "GET STARTED",
+            _type: "secondary",
+          },
+        },
+      ],
     },
   };
 

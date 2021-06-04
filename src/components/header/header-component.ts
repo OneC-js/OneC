@@ -16,6 +16,30 @@ export class HeaderComponent extends OneComponent {
         },
         {
           "c-button": {
+            _txt: "LEARN",
+            _type: "accent"
+          },
+        },
+        {
+          "c-button": {
+            _txt: "FEATURES",
+            _type: "accent"
+          },
+        },
+        {
+          "c-button": {
+            _txt: "SUPPORT",
+            _type: "accent"
+          },
+        },
+        {
+          "c-button": {
+            _txt: "HELP",
+            _type: "accent"
+          },
+        },
+        {
+          "c-button": {
             _txt: "Github",
           },
         },
