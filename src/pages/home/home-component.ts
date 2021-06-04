@@ -6,12 +6,7 @@ export class HomeComponent extends OneComponent {
   $style = style;
   $template = {
     div: {
-      _style: {
-        display: "grid",
-        height: "75%",
-        "align-items": "center",
-        "justify-items": "center",
-      },
+      _class: "container",
       _cn: [
         {
           img: {
@@ -22,10 +17,8 @@ export class HomeComponent extends OneComponent {
         },
         {
           div: {
+            _class: "subtext",
             _text: "The object-based framework",
-            _style: {
-              "font-size": "20pt",
-            },
           },
         },
         {

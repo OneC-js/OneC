@@ -1,0 +1,10 @@
+.container {
+  display: grid;
+  height: 75%;
+  align-items: center;
+  justify-items: center;
+}
+
+.subtext {
+  font-size: 36pt;
+}
