@@ -1,26 +1,33 @@
 .container {
-  width: calc(100vw - 6em);
   position: fixed;
-  bottom: 0.5em;
-  left: 2em;
+  bottom: 0em;
+  left: 0em;
+  display: grid;
+  justify-items: center;
+  width: calc(100% - 2em);
+  padding: 1em;
+  backdrop-filter: blur(10px);
+}
+
+.footer-container {
+  width: calc(100% - 4em);
   padding: 0.5em 1em;
   background: #002649;
-  display: grid;
   gap: 1em;
+  display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   border-radius: 0.5em;
 }
 
 .url-container {
-  border-radius: 0.5em;
   color: #2ac2ff;
   display: grid;
   align-items: center;
   text-align: center;
 }
 
-.npm-text {
+.cdn-text {
   color: #2ac2ff;
   font-size: 12pt;
   font-weight: 600;

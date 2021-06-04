@@ -27,6 +27,9 @@ export class HomeComponent extends OneComponent {
             _type: "secondary",
           },
         },
+        {
+          "c-cards": {},
+        },
       ],
     },
   };
