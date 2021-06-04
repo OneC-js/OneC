@@ -4,7 +4,7 @@
   padding-left: 2em;
   padding-right: 2em;
   align-items: center;
-  grid-gap: 2em;
+  gap: 2em;
   grid-template-columns: 1fr auto auto auto auto auto; 
 }
 
