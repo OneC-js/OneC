@@ -16,7 +16,19 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ["css-loader"],
+        use: [
+          // Translates CSS into CommonJS
+          "css-loader",
+        ],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Translates CSS into CommonJS
+          "css-loader",
+          // Compiles Sass to CSS
+          "sass-loader",
+        ],
       },
     ],
   },
@@ -46,6 +58,6 @@ module.exports = {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
     port: 9000,
-    host: '0.0.0.0',
+    host: "0.0.0.0",
   },
 };
