@@ -1,5 +1,5 @@
 import { OneComponent } from "../../onec";
-import style from "./footer-component.css";
+import style from "./footer-component.scss";
 
 export class FooterComponent extends OneComponent {
   // component definition

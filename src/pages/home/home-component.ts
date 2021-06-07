@@ -1,7 +1,7 @@
 import { OneComponent, ReactiveLst } from "../../onec";
 import { cardStore } from "../../stores";
 import { ICard } from "../../stores/card";
-import style from "./home-component.css";
+import style from "./home-component.scss";
 
 export class HomeComponent extends OneComponent {
   private cards: Array<ICard> = [];

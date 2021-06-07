@@ -1,4 +1,4 @@
-import style from "./button-component.css";
+import style from "./button-component.scss";
 import { OneComponent } from "../../onec";
 
 export class ButtonComponent extends OneComponent {

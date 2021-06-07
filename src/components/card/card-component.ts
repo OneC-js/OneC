@@ -1,4 +1,4 @@
-import style from "./card-component.css";
+import style from "./card-component.scss";
 import { Bind, ITemplate, OneComponent, ReactiveObj } from "../../onec";
 
 export class CardComponent extends OneComponent {
