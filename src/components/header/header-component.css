@@ -1,15 +1,28 @@
 .header {
   height: 4em;
   display: grid;
-  padding-left: 2em;
-  padding-right: 2em;
+  padding-left: 4em;
+  padding-right: 4em;
   align-items: center;
   gap: 2em;
-  grid-template-columns: 1fr auto auto auto auto auto; 
+  grid-template-columns: 1fr auto auto auto auto auto;
 }
 
 .header-text {
   font-size: 28pt;
   color: #007fff;
   font-family: "Pattaya", sans-serif;
+}
+
+@media only screen and (max-width: 600px) {
+  .header {
+    padding: 0;
+    grid-template-columns: auto;
+    width: 100%;
+    text-align: center;
+  }
+
+  .button-label {
+    display: none;
+  }
 }

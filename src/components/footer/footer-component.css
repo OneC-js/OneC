@@ -6,16 +6,17 @@
   justify-items: center;
   width: calc(100% - 2em);
   padding: 1em;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(50px);
+  background: #ffffff1f;
 }
 
 .footer-container {
-  width: calc(100% - 4em);
-  padding: 0.5em 1em;
+  width: calc(100% - 7em);
+  padding: 0.5em;
   background: #002649;
   gap: 1em;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 5em 1fr 5em;
   align-items: center;
   border-radius: 0.5em;
 }
@@ -45,4 +46,15 @@
 
 .copy-button:hover {
   color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .cdn-text,
+  .copy-button {
+    display: none;
+  }
 }

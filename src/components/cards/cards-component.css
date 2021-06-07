@@ -1,6 +1,35 @@
 .main-area {
-    display: grid;
-    gap: 2em;
-    grid-template-columns: auto auto auto;
-    justify-content: center;
+  background: #002648;
+  width: 100vw;
+  padding: 6em 0em;
+  height: calc(100vh - 8em);
+}
+
+.card-area {
+  display: grid;
+  gap: 4em;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+}
+
+.subtext-area {
+  display: grid;
+  text-align: center;
+  height: 25em;
+  align-items: center;
+}
+
+.subtext-content {
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .main-area {
+    height: 100%;
+    padding: 6em 2em;
+  }
+
+  .card-area {
+    grid-template-columns: auto;
+  }
 }

@@ -1,34 +1,68 @@
-import { usersStore } from "../../stores";
+import { cardStore } from "../../stores";
 import style from "./cards-component.css";
-import { IUser } from "../../stores/users";
+import { ICard } from "../../stores/card";
 import { OneComponent, ReactiveLst } from "../../onec";
 
 export class CardsComponent extends OneComponent {
   // variables
-  private users: Array<IUser> = [];
+  private cards: Array<ICard> = [];
 
   // component definition
   $style = style;
   $template = {
     div: {
       _class: "main-area",
-      _cn: ReactiveLst((elements) => {
-        for (const user of this.users) {
-          elements.push({
-            "c-card": {
-              _name: user.name,
-              _email: user.email,
-            },
-          });
-        }
-      }),
+      _cn: [
+        {
+          div: {
+            _class: "card-area",
+            _cn: ReactiveLst((elements) => {
+              for (const card of this.cards) {
+                elements.push({
+                  "c-card": {
+                    _imageUrl: card.imageUrl,
+                    _title: card.title,
+                    _content: card.content,
+                  },
+                });
+              }
+            }),
+          },
+        },
+        {
+          div: {
+            _class: "subtext-area",
+            _cn: [
+              {
+                div: {
+                  _class: "subtext",
+                  _cn: [
+                    {
+                      p: {
+                        _class: "subtext-content",
+                        _text: "Released under the MIT License",
+                      },
+                    },
+                    {
+                      p: {
+                        _class: "subtext-content",
+                        _text: "Copyright © 2020-2021 Nigel Matyukira",
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        },
+      ],
     },
   };
 
   constructor() {
     super();
-    usersStore.bind((data) => {
-      this.users = data.users;
+    cardStore.bind((data) => {
+      this.cards = data.cards;
     });
   }
 }

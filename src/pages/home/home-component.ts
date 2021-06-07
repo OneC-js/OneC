@@ -9,22 +9,29 @@ export class HomeComponent extends OneComponent {
       _class: "container",
       _cn: [
         {
-          img: {
-            _src: "assets/onec.svg",
-            _width: "400",
-            _height: "400",
-          },
-        },
-        {
           div: {
-            _class: "subtext",
-            _text: "The object-based framework",
-          },
-        },
-        {
-          "c-button": {
-            _txt: "GET STARTED",
-            _type: "secondary",
+            _class: "first-view",
+            _cn: [
+              {
+                img: {
+                  _src: "assets/onec.svg",
+                  _width: "400",
+                  _height: "400",
+                },
+              },
+              {
+                div: {
+                  _class: "subtext",
+                  _text: "The object-based framework",
+                },
+              },
+              {
+                "c-button": {
+                  _txt: "GET STARTED",
+                  _type: "secondary",
+                },
+              },
+            ],
           },
         },
         {

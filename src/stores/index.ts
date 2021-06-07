@@ -1,3 +1,3 @@
-import { UsersStore } from "./users";
+import { CardStore } from "./card";
 
-export const usersStore = new UsersStore();
+export const cardStore = new CardStore();
