@@ -29,6 +29,7 @@
   text-align: center;
 }
 
+.copy-button,
 .cdn-button {
   color: #2ac2ff;
   background: #002649;
@@ -40,22 +41,11 @@
   text-align: center;
 }
 
-.cdn-button:hover {
+.copy-button:hover {
   color: white;
 }
 
-.copy-button {
-  color: #2ac2ff;
-  background: #002649;
-  padding: 0.5em 0.9em;
-  border-radius: 0.25em;
-  font-size: 11pt;
-  font-weight: 600;
-  border: 1px solid #2ac2ff;
-  text-align: center;
-}
-
-.copy-button:hover {
+.cdn-button:hover {
   color: white;
 }
 

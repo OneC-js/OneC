@@ -4,11 +4,6 @@
   justify-items: center;
 }
 
-.logo {
-  width: 400px;
-  height: 400px;
-}
-
 .first-view {
   display: grid;
   justify-items: center;
@@ -18,15 +13,20 @@
   grid-template-rows: 50% 15% auto;
 }
 
-.subtext {
-  font-size: 36pt;
-  text-align: center;
-}
-
 .second-view {
   background: #002648;
   padding: 4em;
   height: calc(100vh - 8em);
+}
+
+.logo {
+  width: 400px;
+  height: 400px;
+}
+
+.subtext {
+  font-size: 36pt;
+  text-align: center;
 }
 
 .card-area {
@@ -66,4 +66,5 @@
   .card-area {
     grid-template-columns: auto;
   }
+  
 }
