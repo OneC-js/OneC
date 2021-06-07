@@ -7,10 +7,10 @@
 .first-view {
   display: grid;
   justify-items: center;
-  height: calc(100vh - 4em);
+  height: 100vh;
   margin-top: 2em;
   margin-bottom: 2em;
-  grid-template-rows: 50% 15% auto;
+  grid-template-rows: 45% 15% auto;
 }
 
 .second-view {
