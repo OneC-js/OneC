@@ -10,7 +10,8 @@
   height: 100vh;
   margin-top: 2em;
   margin-bottom: 2em;
-  grid-template-rows: 45% 15% auto;
+  grid-auto-rows: min-content;
+  gap: 4em;
 }
 
 .second-view {
@@ -49,8 +50,8 @@
 
 @media only screen and (max-width: 600px) {
   .logo {
-    width: 200px;
-    height: 2 00px;
+    width: 250px;
+    height: 250px;
   }
 
   .subtext {
