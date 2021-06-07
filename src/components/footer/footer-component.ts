@@ -12,7 +12,7 @@ export class FooterComponent extends OneComponent {
         _cn: [
           {
             div: {
-              _class: "cdn-text",
+              _class: "cdn-button",
               _text: "CDN:",
             },
           },

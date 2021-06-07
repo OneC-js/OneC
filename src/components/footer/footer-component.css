@@ -6,8 +6,9 @@
   justify-items: center;
   width: calc(100% - 2em);
   padding: 1em;
-  backdrop-filter: blur(50px);
-  background: #ffffff1f;
+  background: #ffffff3b;
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
 }
 
 .footer-container {
@@ -28,10 +29,19 @@
   text-align: center;
 }
 
-.cdn-text {
+.cdn-button {
   color: #2ac2ff;
-  font-size: 12pt;
+  background: #002649;
+  padding: 0.5em 0.9em;
+  border-radius: 0.25em;
+  font-size: 11pt;
   font-weight: 600;
+  border: 1px solid #2ac2ff;
+  text-align: center;
+}
+
+.cdn-button:hover {
+  color: white;
 }
 
 .copy-button {
@@ -39,9 +49,10 @@
   background: #002649;
   padding: 0.5em 0.9em;
   border-radius: 0.25em;
-  font-size: 12pt;
+  font-size: 11pt;
   font-weight: 600;
   border: 1px solid #2ac2ff;
+  text-align: center;
 }
 
 .copy-button:hover {
@@ -53,7 +64,7 @@
     grid-template-columns: 1fr;
   }
 
-  .cdn-text,
+  .cdn-button,
   .copy-button {
     display: none;
   }

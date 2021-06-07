@@ -4,14 +4,66 @@
   justify-items: center;
 }
 
+.logo {
+  width: 400px;
+  height: 400px;
+}
+
 .first-view {
   display: grid;
-  align-items: center;
   justify-items: center;
-  height: calc(100vh - 8em);
-  margin-bottom: 4em;
+  height: calc(100vh - 4em);
+  margin-top: 2em;
+  margin-bottom: 2em;
+  grid-template-rows: 50% 15% auto;
 }
 
 .subtext {
   font-size: 36pt;
+  text-align: center;
+}
+
+.second-view {
+  background: #002648;
+  padding: 4em;
+  height: calc(100vh - 8em);
+}
+
+.card-area {
+  display: grid;
+  gap: 4em;
+  grid-template-columns: 20% 20% 20%;
+  justify-content: center;
+}
+
+.owner-area {
+  display: grid;
+  text-align: center;
+  height: 25em;
+  align-items: center;
+}
+
+.owner-content {
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .logo {
+    width: 200px;
+    height: 2 00px;
+  }
+
+  .subtext {
+    font-size: 26pt;
+    text-align: center;
+  }
+
+  .second-view {
+    height: 100%;
+    padding: 6em 2em;
+  }
+
+  .card-area {
+    grid-template-columns: auto;
+  }
 }

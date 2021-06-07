@@ -1,7 +1,11 @@
-import { OneComponent } from "../../onec";
+import { OneComponent, ReactiveLst } from "../../onec";
+import { cardStore } from "../../stores";
+import { ICard } from "../../stores/card";
 import style from "./home-component.css";
 
 export class HomeComponent extends OneComponent {
+  private cards: Array<ICard> = [];
+
   // component definition
   $style = style;
   $template = {
@@ -14,9 +18,8 @@ export class HomeComponent extends OneComponent {
             _cn: [
               {
                 img: {
+                  _class: "logo",
                   _src: "assets/onec.svg",
-                  _width: "400",
-                  _height: "400",
                 },
               },
               {
@@ -35,7 +38,53 @@ export class HomeComponent extends OneComponent {
           },
         },
         {
-          "c-cards": {},
+          div: {
+            _class: "second-view",
+            _cn: [
+              {
+                div: {
+                  _class: "card-area",
+                  _cn: ReactiveLst((elements) => {
+                    for (const card of this.cards) {
+                      elements.push({
+                        "c-card": {
+                          _imageUrl: card.imageUrl,
+                          _title: card.title,
+                          _content: card.content,
+                        },
+                      });
+                    }
+                  }),
+                },
+              },
+              {
+                div: {
+                  _class: "owner-area",
+                  _cn: [
+                    {
+                      div: {
+                        _class: "owner-group",
+                        _cn: [
+                          {
+                            p: {
+                              _class: "owner-content",
+                              _text: "Released under the MIT License",
+                            },
+                          },
+                          {
+                            p: {
+                              _class: "owner-content",
+                              _text: "Copyright © 2020-2021 Nigel Matyukira",
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
         },
       ],
     },
@@ -43,5 +92,8 @@ export class HomeComponent extends OneComponent {
 
   constructor() {
     super();
+    cardStore.bind((data) => {
+      this.cards = data.cards;
+    });
   }
 }
