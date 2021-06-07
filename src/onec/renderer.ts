@@ -190,6 +190,11 @@ export interface IElement {
   _cn?: Array<ITemplate | ReactiveObject> | ReactiveList;
 }
 
+enum InternalElements {
+  StaticElement = "__onec_element__",
+  ReactiveElement = "__onec_reactive_element__",
+}
+
 /**
  * A OneC component template to creating a WebComponent.
  */
@@ -300,7 +305,7 @@ export class OneComponent extends HTMLElement {
         }
         break;
       default:
-        if (key !== "__onec_reactive_element__" && key !== "__onec_element__") {
+        if (key !== InternalElements.ReactiveElement && key !== InternalElements.StaticElement) {
           if (value instanceof BindObject) {
             parentElement.setAttribute(
               key.substring(1, key.length),
@@ -341,18 +346,18 @@ export class OneComponent extends HTMLElement {
     key: string,
     value: any
   ): void {
-    if (value["__onec_reactive_element__"]) {
+    if (value[InternalElements.ReactiveElement]) {
       const tempElement = document.createElement(key);
-      value["__onec_reactive_element__"].replaceWith(tempElement);
-      value["__onec_element__"] = tempElement;
+      value[InternalElements.ReactiveElement].replaceWith(tempElement);
+      value[InternalElements.StaticElement] = tempElement;
       this.renderTemplate(tempElement, value);
     } else {
-      if (value["__onec_element__"]) {
-        this.renderTemplate(value["__onec_element__"], value);
+      if (value[InternalElements.StaticElement]) {
+        this.renderTemplate(value[InternalElements.StaticElement], value);
       } else {
         const tempElement = document.createElement(key);
         parentElement.appendChild(tempElement);
-        value["__onec_element__"] = tempElement;
+        value[InternalElements.StaticElement] = tempElement;
         this.renderTemplate(tempElement, value);
       }
     }
@@ -488,7 +493,10 @@ export const OneCRenderer = (component: IComponent): void => {
       private activateVariableWatchers(): void {
         Object.getOwnPropertyNames(this).forEach((prop) => {
           const value = this[prop];
-          if (prop[0] !== "_" && prop[0] !== "$") {
+          if (prop[0] === "_") {
+          }
+          if (prop[0] === "$") {
+          } else {
             if (typeof value === "object") {
               this.activateVariableProxy(prop, value);
             } else {
