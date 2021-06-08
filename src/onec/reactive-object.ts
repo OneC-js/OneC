@@ -1,3 +1,8 @@
+export enum IntElement {
+  StaticElement = "__static_element__",
+  ReactiveElement = "__reactive_element__",
+}
+
 /**
  * This function is used to reactively render a objects.
  * @param {(list: Array<any | ReactiveObject>) => void} list - A anonymous function that provides a list to add the reactive/static objects definitions.
@@ -66,8 +71,9 @@ export class ReactiveObject {
       if (Object.hasOwnProperty.call(element, key)) {
         const elementValue = element[key];
         if (this.reactiveElement) {
-          if (!elementValue["__onec_reactive_element__"]) {
-            elementValue["__onec_reactive_element__"] = this.reactiveElement;
+          if (!elementValue[IntElement.ReactiveElement]) {
+            elementValue[IntElement.ReactiveElement] =
+              this.reactiveElement;
           }
         }
       }
@@ -90,8 +96,8 @@ export class ReactiveObject {
     for (const key in this.element) {
       if (Object.hasOwnProperty.call(this.element, key)) {
         const elementValue = this.element[key];
-        if (elementValue["__onec_element__"]) {
-          this.reactiveElement = elementValue["__onec_element__"];
+        if (elementValue[IntElement.ReactiveElement]) {
+          this.reactiveElement = elementValue[IntElement.ReactiveElement];
         }
       }
     }

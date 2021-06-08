@@ -1,6 +1,7 @@
 import { BindObject } from "./bind-object";
-import { ReactiveObject } from "./reactive-object";
 import { ReactiveList } from "./reactive-list";
+import { IntElement, ReactiveObject } from "./reactive-object";
+
 // SECTION: Component
 
 type IAnonymous = () => string | number | null | undefined | void;
@@ -190,11 +191,6 @@ export interface IElement {
   _cn?: Array<ITemplate | ReactiveObject> | ReactiveList;
 }
 
-enum InternalElements {
-  StaticElement = "__onec_element__",
-  ReactiveElement = "__onec_reactive_element__",
-}
-
 /**
  * A OneC component template to creating a WebComponent.
  */
@@ -227,7 +223,12 @@ export class OneComponent extends HTMLElement {
    * @param {HTMLElement} parentElement - The parent element where a child element will be created or an attribute, function are applied.
    * @param {any} objTemplate - A json object containing the elements, attributes and functions to be rendered to the template.
    */
-  private renderTemplate(parentElement: HTMLElement, objTemplate: any): void {
+  private renderTemplate(
+    parentElement: HTMLElement,
+    objTemplate: any,
+    type: string = IntElement.StaticElement
+  ): void {
+    console.log("[template] -> ", this.$template);
     if (parentElement && objTemplate) {
       for (const key in objTemplate) {
         if (Object.hasOwnProperty.call(objTemplate, key)) {
@@ -237,7 +238,7 @@ export class OneComponent extends HTMLElement {
           } else if (key[0] === "$") {
             this.renderListener(parentElement, objTemplate, key, value);
           } else {
-            this.renderElement(parentElement, key, value);
+            this.renderElement(parentElement, key, value, type);
           }
         }
       }
@@ -284,7 +285,11 @@ export class OneComponent extends HTMLElement {
             children.forEach((child: ReactiveObject) => {
               if (child instanceof ReactiveObject) {
                 const element = child.getObject();
-                this.renderTemplate(parentElement, element);
+                this.renderTemplate(
+                  parentElement,
+                  element,
+                  IntElement.ReactiveElement
+                );
                 value.addGeneratedElement(element);
               } else {
                 this.renderTemplate(parentElement, child);
@@ -293,10 +298,15 @@ export class OneComponent extends HTMLElement {
             });
           }
         } else if (value instanceof Array) {
-          value.forEach((child: ReactiveObject) => {
+          value.forEach((child: ReactiveObject | any) => {
             if (child instanceof ReactiveObject) {
               const element = child.getObject();
-              this.renderTemplate(parentElement, element);
+              this.renderTemplate(
+                parentElement,
+                element,
+                IntElement.ReactiveElement
+              );
+              console.log("[element] -> ", element);
               child.addGeneratedElement(element);
             } else {
               this.renderTemplate(parentElement, child);
@@ -305,7 +315,10 @@ export class OneComponent extends HTMLElement {
         }
         break;
       default:
-        if (key !== InternalElements.ReactiveElement && key !== InternalElements.StaticElement) {
+        if (
+          key !== IntElement.ReactiveElement &&
+          key !== IntElement.StaticElement
+        ) {
           if (value instanceof BindObject) {
             parentElement.setAttribute(
               key.substring(1, key.length),
@@ -344,22 +357,50 @@ export class OneComponent extends HTMLElement {
   private renderElement(
     parentElement: HTMLElement,
     key: string,
+    value: any,
+    type: any
+  ): void {
+    if (type === IntElement.ReactiveElement) {
+      this.renderReactiveElement(parentElement, key, value);
+    } else if (type === IntElement.StaticElement) {
+      this.renderStaticElement(parentElement, key, value);
+    } else {
+      throw new Error("Render element type unknown.");
+    }
+  }
+
+  private renderReactiveElement(
+    parentElement: HTMLElement,
+    key: string,
     value: any
   ): void {
-    if (value[InternalElements.ReactiveElement]) {
+    if (value[IntElement.ReactiveElement] instanceof OnecElement) {
       const tempElement = document.createElement(key);
-      value[InternalElements.ReactiveElement].replaceWith(tempElement);
-      value[InternalElements.StaticElement] = tempElement;
-      this.renderTemplate(tempElement, value);
+      value[IntElement.ReactiveElement].replaceWith(tempElement);
+      this.renderTemplate(
+        value[IntElement.ReactiveElement].getElement(),
+        value
+      );
     } else {
-      if (value[InternalElements.StaticElement]) {
-        this.renderTemplate(value[InternalElements.StaticElement], value);
-      } else {
-        const tempElement = document.createElement(key);
-        parentElement.appendChild(tempElement);
-        value[InternalElements.StaticElement] = tempElement;
-        this.renderTemplate(tempElement, value);
-      }
+      const tempElement = document.createElement(key);
+      parentElement.appendChild(tempElement);
+      value[IntElement.ReactiveElement] = new OnecElement(tempElement);
+      this.renderTemplate(tempElement, value);
+    }
+  }
+
+  private renderStaticElement(
+    parentElement: HTMLElement,
+    key: string,
+    value: any
+  ): void {
+    if (value[IntElement.StaticElement] instanceof OnecElement) {
+      this.renderTemplate(value[IntElement.StaticElement].getElement(), value);
+    } else {
+      const tempElement = document.createElement(key);
+      parentElement.appendChild(tempElement);
+      value[IntElement.StaticElement] = new OnecElement(tempElement);
+      this.renderTemplate(tempElement, value);
     }
   }
 
@@ -379,6 +420,24 @@ export class OneComponent extends HTMLElement {
       <HTMLElement>(<unknown>this.shadowRoot),
       this.$template
     );
+  }
+}
+
+// SECTION:
+class OnecElement {
+  private element!: HTMLElement;
+
+  constructor(element: HTMLElement) {
+    this.element = element;
+  }
+
+  public getElement(): HTMLElement {
+    return this.element;
+  }
+
+  public replaceWith(element: HTMLElement): void {
+    this.element.replaceWith(element);
+    this.element = element;
   }
 }
 
